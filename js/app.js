@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+'strict mode'
 var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -7,10 +8,12 @@ var Enemy = function(x,y, speed) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
-    enemySpeeds = [200, 300, 400, 500];
+    enemySpeeds = [200];
     this.speed = enemySpeeds[(Math.floor(Math.random() * enemySpeeds.length))] - 100;
     this.sprite = 'images/enemy-bug.png';
 };
+
+var Level_Up_Message = 'Ladykiller: Keep Playing!';
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -18,10 +21,41 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    //invoking the checkCollision
+    //this.checkCollisions(player);
     this.x += this.speed*dt;
     if (this.x > 505) {
         this.x = 0;
     }
+        //if the player is in row 1
+   if (player.y === 68) {
+        console.log('Im in the row');
+        //check for collision for player and any enemy
+       if (((player.x - this.x ) > -20) && ((player.x - this.x) < 75)) {
+           console.log("player" + player.x + "enemy" + this.x);
+           player.reset();
+       }
+
+    }
+    // if player is in row 2
+   if (player.y === 151) {
+       //check for collision with player and any enemy
+       if (((player.x - this.x ) > -20) && ((player.x - this.x) < 75)) {
+           console.log("player" + player.x + "enemy" + this.x);
+           player.reset();
+       }
+
+   }
+
+     // if player is in row 3
+     /*if (player.y === 234) {
+       //check for collision with player and any enemy
+       if (((player.x - this.x ) > -20) && ((player.x - this.x) < 75)) {
+           console.log("player" + player.x + "enemy" + this.x);
+           player.reset();
+       }
+
+   }*/
     return this;
 
 };
@@ -43,42 +77,13 @@ var Player = function(x,y) {
 };
 
 Player.prototype.update = function(dt) {
-    //if the player is in row 1
-    if (this.y === 73) {
-        //check for collision for enemy1 and enemy2
-       if (Math.round(enemy1.x) + 101 == this.x) {
-           this.reset();
-       }
-       if (Math.round(enemy2.x) + 101 == this.x){
-           this.reset();
-       }
-    }
-    // if player is in row 2
-    if (this.y === 156) {
-       //check for collision with enemy 3 and 4
-       if (Math.round(enemy3.x) + 101 == this.x) {
-            this.reset();
-       }
-       if (Math.round(enemy4.x) + 101 == this.x) {
-            this.reset();
-       }
-    }
-     // if player is in row 3
-     if (this.y === 238) {
-       //check for collision with enemy 5 and 6
-       if (Math.round(enemy5.x) + 101 == this.x) {
-            this.reset();
-       }
-       if (Math.round(enemy6.x) + 101 == this.x) {
-            this.reset();
-       }
-   }
+
 };
 
 Player.prototype.reset = function() {
-    this.x = 202;
-    this.y = 404;
-}
+    this.x = 200;
+    this.y = 400;
+};
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
@@ -89,13 +94,13 @@ Player.prototype.handleInput = function(key){
     if (key == 'up') {
         //move this.y : subtract this value by 83
         //this means the player is not in the first row
-        if (this.y !== -10)
+        if (this.y !== -15)
             this.y = this.y - 83;
     }
     if (key == 'down') {
-        //move this.y : add this value by 101
+        //move this.y : add this value by 83
         //this means the player is not in the last row
-        if (this.y !== 405)
+        if (this.y !== 401)
             this.y = this.y + 83;
 
     }
@@ -112,22 +117,22 @@ Player.prototype.handleInput = function(key){
         if (this.x !== 404)
             this.x = this.x + 101;
     }
-    console.log("this.x is " + this.x);
-    console.log("this.y is " + this.y);
+    console.dir(this+":this.x is " + this.x);
+    console.dir(this);
 };
 
 // Now instantiate your objects.
-var enemy1 = new Enemy(100,65);
-var enemy2 = new Enemy(-20,65);
+var enemy1 = new Enemy(250,65);
+var enemy2 = new Enemy(-20,160);
 var enemy3 = new Enemy(300,140);
-var enemy4 = new Enemy(100,140);
+var enemy4 = new Enemy(200,140);
 var enemy5 = new Enemy(100,210);
-var enemy6 = new Enemy(300,210);
-var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+var enemy6 = new Enemy(300,240);
+var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var player = new Player(202,405);
+var player = new Player(200,400);
 
 
 
