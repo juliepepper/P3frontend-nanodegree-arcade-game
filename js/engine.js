@@ -26,117 +26,14 @@ var Engine = (function(global) {
         lastTime
 
 
+
+
+
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
-/*var canvas,
-surface,
-currentScreen;
 
-var mouse; // simple helper for capturing the mouse's state
-
-function beginLoop() {
-  var frameId = 0;
-  var lastFrame = Date.now();
-
-  function loop() {
-    var thisFrame = Date.now();
-
-    var elapsed = thisFrame - lastFrame;
-
-    frameId = window.requestAnimationFrame(loop);
-
-    currentScreen.update(elapsed);
-    currentScreen.draw(surface);
-
-    lastFrame = thisFrame;
-  }
-
-  loop();
-}
-
-
-canvas = document.querySelector('canvas#board');
-canvas.setAttribute('width', 600);
-canvas.setAttribute('height', 300);
-
-surface = canvas.getContext('2d');
-
-mouse = (function (target) {
-  var isButtonDown = false;
-
-  target.addEventListener('mousedown', function () {
-    isButtonDown = true;
-  });
-  target.addEventListener('mouseup', function () {
-    isButtonDown = false;
-  });
-
-  return {
-    isButtonDown: function () {
-      return isButtonDown;
-    }
-  };
-}(document));
-
-// define the start screen
-currentScreen = (function (input) {
-
-  var hue = 0;
-  var direction = 1;
-  var transitioning = false;
-  var wasButtonDown = false;
-  var intro = 'Drive the ladies crazy by making it to the water without being eaten';
-  var title = 'De-Bug-Her';
-
-  function centerText(ctx, text, y) {
-    var measurement = ctx.measureText(text);
-    var x = (ctx.canvas.width - measurement.width) / 2;
-    ctx.fillText(text, x, y);
-  }
-
-  function draw(ctx, elapsed) {
-
-    var y = ctx.canvas.height / 2;
-    var color = 'rgb(' + hue + ',0,0)';
-
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = 'white';
-    ctx.font = '48px monospace';
-    centerText(ctx, title, y);
-
-    ctx.fillStyle = color;
-    ctx.font = '24px monospace';
-    centerText(ctx, 'click to begin', y + 30);
-  }
-
-  function update() {
-
-    hue += 1 * direction;
-    if (hue > 255) direction = -1;
-    if (hue < 1) direction = 1;
-
-    var isButtonDown = input.isButtonDown();
-    var mouseJustClicked = !isButtonDown && wasButtonDown;
-
-    if (mouseJustClicked && !transitioning) {
-      transitioning = true;
-      // do something here to transition to the actual game
-      title = 'Start Playing!';
-    }
-
-    wasButtonDown = isButtonDown;
-  }
-
-  return {
-    draw: draw,
-    update: update
-  };
-}(mouse));
-
-
-beginLoop();/*
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -199,7 +96,8 @@ beginLoop();/*
      * the data/properties related to the object. Do your drawing in your
      * render methods.
      */
-    function updateEntities(dt) {
+
+      function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             //adding the player as an argument
             enemy.update(dt);
@@ -207,6 +105,26 @@ beginLoop();/*
         player.update();
     }
 
+    /*function extras() {
+        player.y = -15;
+                this.message(LEVEL_UP_MESSAGE);
+                setTimeoout (function() {
+                    this.levelup = false;
+                     //Reset player to starting
+                     player.reset();
+                    //Add  enemy speed
+                    this.levelup = true;
+               if (key = 'up' && player.y === -15) {
+                    success2.wav();
+               }
+
+                   player.reset();
+
+                }
+
+            //Bind this to setTimout so it maintains the instance
+           .bind (this), LEVEL_UP_DELAY);
+    }*/
 
 
     /* This function initially draws the "game level", it will then call
@@ -230,6 +148,22 @@ beginLoop();/*
             numRows = 6,
             numCols = 5,
             row, col;
+
+        var successSnd = new Audio('sounds/success2.wav');
+        var successSnd = new Audio('sounds/levelwin.wav');
+
+//Player.prototype.handleInput = function (key) {
+   // if (key = 'up' && player.y === -15) {
+        //success2.wav();
+        //then reset player and start main loop again
+       // player.reset();
+    //}
+    //else {
+
+    //}
+  //};
+
+
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -283,7 +217,8 @@ beginLoop();/*
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-horn-girl.png'
+        'images/char-horn-girl.png',
+
     ]);
     Resources.onReady(init);
 
