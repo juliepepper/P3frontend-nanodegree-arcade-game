@@ -1,9 +1,9 @@
 // Enemies our player must avoid
-'strict mode'
+'strict mode';
 var CANVAS_WIDTH;
 var CANVAS_HEIGHT;
 var LEVEL_UP_DELAY = 1000;
-var LEVEL_UP_MESSAGE = 'Ladykiller: Winner!';
+var LEVEL_UP_MESSAGE;
 var LEVEl_UP;
 var gameStatus;
 var key = allowedKeys;
@@ -31,11 +31,7 @@ var Enemy = function(x,y, speed) {
 
 //Manage level up dialogue
 
-var gameStatus = function() {
-    this.level = 1;
-    this.levelup = false;
 
-};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
