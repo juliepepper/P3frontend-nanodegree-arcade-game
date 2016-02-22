@@ -103,11 +103,12 @@ var Player = function(x,y) {
 };
 
 Player.prototype.update = function(dt) {
-    if (player.y === -15) {
+  //Using object inheritance
+    if (this.y === -15) {
         //if player reaches the water, play a tune
         successAudio.play();
         //reposition player
-        player.reset();
+        this.reset();
 
     }
 
