@@ -105,26 +105,6 @@ var Engine = (function(global) {
         player.update();
     }
 
-    /*function extras() {
-        player.y = -15;
-                this.message(LEVEL_UP_MESSAGE);
-                setTimeoout (function() {
-                    this.levelup = false;
-                     //Reset player to starting
-                     player.reset();
-                    //Add  enemy speed
-                    this.levelup = true;
-               if (key = 'up' && player.y === -15) {
-                    success2.wav();
-               }
-
-                   player.reset();
-
-                }
-
-            //Bind this to setTimout so it maintains the instance
-           .bind (this), LEVEL_UP_DELAY);
-    }*/
 
 
     /* This function initially draws the "game level", it will then call
@@ -149,19 +129,6 @@ var Engine = (function(global) {
             numCols = 5,
             row, col;
 
-        var successSnd = new Audio('sounds/success2.wav');
-        var successSnd = new Audio('sounds/levelwin.wav');
-
-//Player.prototype.handleInput = function (key) {
-   // if (key = 'up' && player.y === -15) {
-        //success2.wav();
-        //then reset player and start main loop again
-       // player.reset();
-    //}
-    //else {
-
-    //}
-  //};
 
 
 
